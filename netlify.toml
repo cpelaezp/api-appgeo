@@ -1,9 +1,6 @@
 [build]
-  # La ruta del directorio a publicar después de la construcción
-  publish = "/"
-  # El comando para ejecutar el servidor de la aplicación
   command = "pip install -r requirements.txt && gunicorn app:app"
+  publish = "/"
 
 [context.production.environment]
-  # Establece la variable de entorno para Gunicorn (opcional)
-  GUNICORN_CMD_ARGS = "--bind 0.0.0.0 --workers 4"
+  GUNICORN_CMD_ARGS = "--bind 0.0.0.0 --workers 1"

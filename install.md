@@ -164,3 +164,74 @@ Resumen:
     Reducir el tamaño del archivo o comprimirlo también es una opción si no deseas usar Git LFS.
 
 Te recomiendo optar por Git LFS si planeas trabajar con archivos grandes regularmente.
+
+
+# Install in Render 
+
+Para desplegar tu API de Flask en Render, sigue estos pasos detallados. Render es una plataforma muy adecuada para alojar aplicaciones de backend en Python.
+1. Preparar tu proyecto
+Archivos necesarios
+
+Tu proyecto debe incluir:
+
+    Archivo principal de la API: app.py (este es el archivo que me proporcionaste).
+    Archivo CSV: Asegúrate de incluir resultados_finales.csv en la raíz del proyecto o en el mismo directorio donde esperas cargarlo.
+    Archivo requirements.txt: Define las dependencias de Python.
+
+Crear el archivo requirements.txt
+
+Crea un archivo requirements.txt en la raíz de tu proyecto con las siguientes dependencias (ajusta las versiones si es necesario):
+
+Flask==2.0.1
+pandas==1.3.3
+flask-cors==3.0.10
+gunicorn==20.1.0
+
+2. Subir el proyecto a un repositorio de Git
+
+    Inicia un repositorio de Git en tu proyecto local (si no lo tienes aún):
+
+    git init
+    git add .
+    git commit -m "Preparar proyecto para despliegue en Render"
+
+    Sube tu proyecto a un servicio de control de versiones como GitHub, GitLab o Bitbucket.
+
+3. Crear un servicio web en Render
+
+    Crea una cuenta en Render si no tienes una.
+
+    Configura el despliegue en Render:
+        Desde el panel de Render, selecciona New > Web Service.
+        Conecta Render con tu cuenta de GitHub, GitLab o Bitbucket, y selecciona el repositorio donde está tu proyecto.
+        Render detectará automáticamente tu proyecto de Python.
+
+    Configura los ajustes del servicio:
+        Name: Ponle un nombre a tu servicio.
+        Region: Selecciona la región que prefieras.
+        Branch: Elige la rama de Git donde está tu código (por ejemplo, main).
+        Runtime: Selecciona Python 3 como entorno.
+        Build Command: Deja este campo vacío, Render instalará automáticamente las dependencias en requirements.txt.
+        Start Command: Especifica el comando de inicio de tu aplicación:
+
+        gunicorn app:app
+
+    Configurar variables de entorno (opcional):
+        Si tu aplicación requiere variables de entorno, puedes configurarlas en la sección Environment.
+
+    Iniciar el despliegue:
+        Haz clic en Create Web Service para iniciar el despliegue.
+        Render descargará el repositorio, instalará las dependencias y ejecutará la aplicación usando gunicorn.
+
+4. Verificar el despliegue
+
+Render proporcionará una URL pública (algo como https://tu-aplicacion.onrender.com) donde podrás acceder a tu API Flask. Accede a esa URL y prueba tus endpoints para verificar que todo funcione correctamente.
+5. Actualizar el servicio
+
+Cada vez que hagas cambios en tu código y los subas a la rama configurada, Render automáticamente detectará el cambio y redeployará tu aplicación.
+Notas adicionales:
+
+    Render tiene un plan gratuito para aplicaciones web que incluye un período de inactividad (si tu aplicación no recibe solicitudes en un tiempo, se pondrá en suspensión y se despertará cuando reciba una nueva solicitud).
+    Asegúrate de que el archivo resultados_finales.csv esté en la ubicación correcta o cambia la ruta en tu código para asegurar que Flask pueda acceder a él en Render.
+
+Con estos pasos, deberías tener tu API de Flask en funcionamiento en Render.
