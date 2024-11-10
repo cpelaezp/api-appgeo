@@ -18,7 +18,7 @@ RUN conda create -n myenv python=3.9 && \
 COPY . .
 
 # Expone el puerto 8000 para la aplicación Flask
-EXPOSE 4444
+EXPOSE 4433
 
 # Comando para ejecutar la aplicación usando Gunicorn
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]
