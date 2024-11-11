@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import pandas as pd
 from flask_cors import CORS
 from io import StringIO
+import os
 
 
 app = Flask(__name__)
@@ -81,4 +82,5 @@ if __name__ == '__main__':
     # Habilitar CORS
     CORS(app)
 
-    app.run(debug=True)
+    #app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
