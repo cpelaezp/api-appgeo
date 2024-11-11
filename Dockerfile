@@ -21,4 +21,5 @@ COPY . .
 EXPOSE 4433
 
 # Comando para ejecutar la aplicación usando Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]
+#CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]
+CMD ["python", "app.py"]
