@@ -1,7 +1,7 @@
-[build]
-  ##command = "pip install -r requirements.txt && gunicorn app:app"
-  command = "python app.py"
-  publish = "/"
+#[build]
+#  ##command = "pip install -r requirements.txt && gunicorn app:app"
+#  command = "python app.py"
+#  publish = "/"
 
-[context.production.environment]
-  GUNICORN_CMD_ARGS = "--bind 0.0.0.0 --workers 1"
+#[context.production.environment]
+#  GUNICORN_CMD_ARGS = "--bind 0.0.0.0 --workers 1"
